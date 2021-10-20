@@ -8,12 +8,14 @@ public class MoveOnlyZ : MonoBehaviour
 
     public float x;
     public float y;
+    Quaternion rotation;
 
     // Start is called before the first frame update
     void Start()
     {
         x = transform.position.x;
         y = transform.position.y;
+        rotation = transform.rotation;
     }
 
     // Update is called once per frame
@@ -25,6 +27,8 @@ public class MoveOnlyZ : MonoBehaviour
         pos.x = x;
         pos.y = y;
         transform.position = pos;
+
+        transform.rotation = rotation;
         //x랑 y는 고정해주고 z만 움직이게 되는 구조
 
     }
