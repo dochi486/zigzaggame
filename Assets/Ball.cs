@@ -8,6 +8,7 @@ public class Ball : MonoBehaviour
 {
     public Text pointText;
     public int point;
+    Rigidbody rigid;
     //방향을 쉽게 이해하기 위해 enum으로 관리
     public enum Direction
     {
@@ -17,12 +18,24 @@ public class Ball : MonoBehaviour
 
     Direction direction = Direction.Right;
 
-
+    void Start()
+    {
+        rigid = GetComponent<Rigidbody>();
+        //enabled = false; //처음에는 Update문이 안 돌아가고 공이 지면에 완전히 닿았을 때부터 움직이도록 해줘야한다. 
+        //yield return new WaitForSeconds(1);
+        //enabled = true;
+        //rigid.velocity = Vector3.zero;
+    }
     public float speed = 5;
     public float gameOverHeight = 1.3f;
     // Update is called once per frame
     void Update()
     {
+        if(rigid.velocity.x != 0)
+        {
+            Debug.LogWarning("물리적 간섭에 의한 게임 오버");
+            return;
+        }
         if(transform.position.y < gameOverHeight)
         {
             Debug.LogWarning("게임 오버");
@@ -36,6 +49,8 @@ public class Ball : MonoBehaviour
             velocity.x = 0;
             velocity.z = 0;
             GetComponent<Rigidbody>().velocity = velocity; //y는 고정했다. 
+            //y축 고정한 이유 복습하면서 다시 보기.. 
+            //y는 중력이라서!
 
             AddPoint(1);
         }

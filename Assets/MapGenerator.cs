@@ -6,6 +6,7 @@ public class MapGenerator : MonoBehaviour
     public Transform cubeParent;
     public Cube baseItem;
     public int generateCount;
+    public GameObject jewel;
 
     //큐브 랜덤하게 생성
     private void Awake()
@@ -37,6 +38,16 @@ public class MapGenerator : MonoBehaviour
 
             newCube.transform.localPosition = previousPosition;
             previousPosition = newCube.transform.localPosition;
+
+            if (Random.Range(0, 2) == 0)
+            {
+                //보석 배치 랜덤으로
+                var newJewel = Instantiate(jewel);
+                newJewel.transform.position = newCube.transform.position;
+                float addY = newCube.transform.lossyScale.y * 0.5f;
+                newJewel.transform.Translate(0, addY, 0);
+            }
+
         }
     }
 
