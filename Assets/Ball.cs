@@ -31,11 +31,11 @@ public class Ball : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(rigid.velocity.x != 0)
-        {
-            Debug.LogWarning("물리적 간섭에 의한 게임 오버");
-            return;
-        }
+        //if(rigid.velocity.x != 0)
+        //{
+        //    Debug.LogWarning("물리적 간섭에 의한 게임 오버");
+        //    return;
+        //}
         if(transform.position.y < gameOverHeight)
         {
             Debug.LogWarning("게임 오버");
