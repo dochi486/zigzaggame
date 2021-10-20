@@ -58,7 +58,7 @@ public class Ball : MonoBehaviour
         BallMove();
     }
 
-    private void AddPoint(int addPoint)
+    public void AddPoint(int addPoint)
     {
         point += addPoint;
         pointText.text = point.ToString();

@@ -45,7 +45,7 @@ public class MapGenerator : MonoBehaviour
                 var newJewel = Instantiate(jewel);
                 newJewel.transform.position = newCube.transform.position;
                 float addY = newCube.transform.lossyScale.y * 0.5f;
-                newJewel.transform.Translate(0, addY, 0);
+                newJewel.transform.Translate(0, addY, 0, Space.World);
             }
 
         }
