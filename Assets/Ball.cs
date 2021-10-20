@@ -19,9 +19,16 @@ public class Ball : MonoBehaviour
 
 
     public float speed = 5;
+    public float gameOverHeight = 1.3f;
     // Update is called once per frame
     void Update()
     {
+        if(transform.position.y < gameOverHeight)
+        {
+            Debug.LogWarning("게임 오버");
+            return; //여기서 리턴해버리기 때문에 더 이상 움직이지 않는다. 
+            //BallMove로 내려가지 않기 때문에.
+        }
         if(Input.anyKeyDown)
         {
             direction = (direction == Direction.Right) ? Direction.Left : Direction.Right;
