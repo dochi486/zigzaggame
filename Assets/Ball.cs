@@ -1,10 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Ball : MonoBehaviour
 {
-
+    public Text pointText;
+    public int point;
     //방향을 쉽게 이해하기 위해 enum으로 관리
     public enum Direction
     {
@@ -22,9 +25,21 @@ public class Ball : MonoBehaviour
         if(Input.anyKeyDown)
         {
             direction = (direction == Direction.Right) ? Direction.Left : Direction.Right;
+            var velocity = GetComponent<Rigidbody>().velocity;
+            velocity.x = 0;
+            velocity.z = 0;
+            GetComponent<Rigidbody>().velocity = velocity; //y는 고정했다. 
+
+            AddPoint(1);
         }
 
         BallMove();
+    }
+
+    private void AddPoint(int addPoint)
+    {
+        point += addPoint;
+        pointText.text = point.ToString();
     }
 
     private void BallMove()
